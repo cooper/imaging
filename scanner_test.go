@@ -6,6 +6,8 @@ import (
 	"image/color"
 	"image/color/palette"
 	"image/draw"
+	"os"
+	"runtime"
 	"testing"
 )
 
@@ -226,4 +228,14 @@ func readColumn(img image.Image, x int) []uint8 {
 		i += 4
 	}
 	return column
+}
+
+func TestTiffCrash(t *testing.T) {
+	runtime.GOMAXPROCS(1)
+	file, _ := os.Open("testdata/poc.tiff")
+	src, _, err := image.Decode(file)
+	if err != nil {
+		return
+	}
+	Grayscale(src)
 }
