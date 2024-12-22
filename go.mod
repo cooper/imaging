@@ -1,4 +1,4 @@
-module github.com/disintegration/imaging
+module github.com/cooper/imaging
 
 go 1.23.1
 
